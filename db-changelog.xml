@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
+
+    <changeSet id="Create STUDENT table" author="DBA">
+        <createTable tableName="STUDENT">
+            <column name="STU_ID" type="int" >
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_STUDENT" />
+            </column>
+            <column name="STU_NAME" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+     <changeSet id="List of STUDENTS" author="DBA">
+        <insert tableName="STUDENT">
+            <column name="STU_ID" value="001" />
+            <column name="STU_NAME" value="ALEX" />
+        </insert>
+        <insert tableName="STUDENT">
+            <column name="STU_ID" value="002" />
+            <column name="STU_NAME" value="DANNY" />
+        </insert>
+
+     <!--   <rollback>
+        <delete tableName="STUDENT" />
+        </rollback>  -->  
+    </changeSet>
+
+    <changeSet id="Add GENDER column" author="DBA">
+        <addColumn tableName="STUDENT">
+            <column name="GENDER" type="char(1)" />
+        </addColumn>
+    </changeSet>
+
+     <changeSet id="Add DOB column" author="DBA">
+        <addColumn tableName="STUDENT">
+            <column name="DOB" type="char(1)" />
+        </addColumn>
+    </changeSet>
+
+     <changeSet id="Add Father's Name column" author="DBA">
+        <addColumn tableName="STUDENT">
+            <column name="Father's Name" type="char(1)" />
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>
