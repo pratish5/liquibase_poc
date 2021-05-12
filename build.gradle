@@ -30,8 +30,8 @@ task('deploy') {
     liquibase {
       activities {
         main {
-                changeLogFile System.properties.liquibaseChangeLogFile
-                contexts System.properties.liquibaseContexts
+                //changeLogFile System.properties.liquibaseChangeLogFile
+                //contexts System.properties.liquibaseContexts
              }
         }
     }
