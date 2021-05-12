@@ -1,0 +1,40 @@
+plugins {
+  id 'org.liquibase.gradle' version '2.0.4'
+}
+
+repositories {
+  maven {
+    url "https://plugins.gradle.org/m2/"
+  }
+}
+
+dependencies {
+  liquibaseRuntime 'org.liquibase:liquibase-core:4.2.2'
+  liquibaseRuntime 'edu.umich.med.michr:h2-gradle-plugin:0.1.1-SNAPSHOT'
+}
+apply plugin: "org.liquibase.gradle"
+
+liquibase {
+  activities {
+    main {
+          changeLogFile "db-changelog.xml"
+          url "jdbc:mysql://localhost:3306/sample"
+          username "dummy_user"
+          password "password"
+    }
+  }
+} 
+
+task('deploy') {
+  doFirst(){
+    liquibase {
+      activities {
+        main {
+                changeLogFile System.properties.liquibaseChangeLogFile
+                contexts System.properties.liquibaseContexts
+             }
+        }
+    }
+  }
+}
+update.dependsOn(deploy)
